@@ -1,0 +1,131 @@
+<h2>Cookbook</h2>
+<h3>make a good diet and keep healthy</h3>
+<div class="fram">
+  <div style="width:75%">
+    <h4>welcome to your shoppingList</h4>
+  </div>
+  <div style="width:25%">
+    <button class="btn-back" [routerLink]="['/home']">back to homepage</button>
+
+  </div>
+
+</div>
+
+
+<div class="div2">
+  <div style="width:60%">
+    <div class="div1">
+      <!-- <article *ngFor="let recipe of resMealCart">
+        <img src='data:image/jpg;base64,{{recipe.image}}' />
+        <a [routerLink]="['/recipeinfo']" [queryParams]="recipe">
+          <div>
+            <h4>{{recipe.recipe_name}}</h4>
+            <div class="desc">{{recipe.recipe_dis}}</div>
+          </div>
+        </a>
+        <button class="btn" (click)="deleterecipe()"><i class="fa fa-trash"></i></button>
+      </article> -->
+
+      <article *ngFor="let recipe of resMealCart">
+        <!-- <img src="'data:image/jpg;base64,' + {{recipe.main_image}}" [routerLink]="['/recipeinfo']" [queryParams]="recipe" /> -->
+        <img [src]='recipe.main_image' />
+        <!-- <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(recipe.main_image)"/> -->
+        <a [routerLink]="['/recipeinfo']" [queryParams]="recipe">
+          <div>
+            <h3>{{recipe.recipe_name}}</h3>
+            <div class="desc">{{recipe.recipe_description}}</div>
+          </div>
+        </a>
+        <button class="btn" (click)="deleterecipe(recipe.recipe_id)"><i class="fa fa-trash"></i></button>
+      </article>
+    </div>
+
+  </div>
+  <div style="width:40%;">
+    <h3>Calorie Analyse</h3>
+    <div style="padding-left:10em;padding-right: 10em;padding-top: 1em;">
+      <div class="mat-card-content">
+        <h5>
+          {{resCalorie[0].calorie}} cal / 100g
+        </h5>
+      </div>
+
+    </div>
+
+    <h3>Nutrition Analyse</h3>
+    <div style="padding-left:10em;padding-right: 10em;padding-top: 1em;justify-content:center;">
+      <div class="mat-card-content">
+        <br>
+          <!-- <h3>Nutrition</h3> -->
+          <div class="left-nut">
+            <!-- <span class="title">Nutrition</span> -->
+            <h6>
+              <table>
+                <!-- <caption>research until 2018</caption> -->
+                <thead>
+                  <tr>
+                    <th scope="col">Nutrition name</th>
+                    <th scope="col">Nutrition amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let nutrition of resMealcartNutrition">
+                    <th scope="row">{{nutrition.nutrition_name}}</th>
+                    <td>{{nutrition.amount}}</td>
+                  </tr>
+                </tbody>
+              </table>
+    
+              </h6>
+          </div>
+        </div>
+      </div>
+      <h3>Ingredient</h3>
+    <div style="padding-left:10em;padding-right: 10em;padding-top: 1em;justify-content:center;">
+      <div class="mat-card-content">
+        <br>
+          <!-- <h3>Nutrition</h3> -->
+          <div class="left-nut">
+            <!-- <span class="title">Nutrition</span> -->
+            <h6>
+              <table>
+                <!-- <caption>research until 2018</caption> -->
+                <thead>
+                  <tr>
+                    <th scope="col">Ingredient name</th>
+                    <th scope="col">Ingredient amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ingredient of resMCIngredient">
+                    <th scope="row">{{ingredient.ingredient_name}}</th>
+                    <td>{{ingredient.quantity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+    
+              </h6>
+      </div>
+
+    
+
+</div>
+<!-- <div *ngFor="let recipe of recipes">
+  <h3>
+    <a [title]="recipe.name + ' details'" [routerLink]="['/recipes', recipe.id]">
+      {{ recipe.name }}
+    </a>
+  </h3>
+
+  <p *ngIf="recipe.description">
+    Description: {{ recipe.description }}
+  </p>
+
+  <button (click)="favourite()">
+    Add to Favorite
+  </button>
+
+  <button (click)="delete()">
+    delete
+  </button>
+</div>  -->

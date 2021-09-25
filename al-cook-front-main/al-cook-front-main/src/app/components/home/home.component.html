@@ -1,0 +1,75 @@
+<form [routerLink]="['/home']">
+  <h2>Cookbook</h2>
+  <h3>make a good diet and keep healthy</h3>
+</form>
+<!-- <div id="container"> -->
+<div class="div2">
+  <div style="width: 100%; position: relative;">
+    <div class="search bar1 div2">
+      <div style="width: 80%; position: relative;">
+        <form>
+          <input class="search-input" type="text" placeholder="     recipe name" [(ngModel)]="rname"
+            [ngModelOptions]="{standalone: true}">
+          <button class="bar1-button" (click)="getRecipesByName()"><span>search</span></button>
+          <!-- <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" /> -->
+        </form>
+      </div>
+      <div style="width: 20%; position: relative;">
+        <button class="btn-cart" [routerLink]="['/mealcart']"><span><i class="fa fa-shopping-cart"></i> Meal cart</span></button>
+      </div>
+  </div>
+</div>
+<div class="div2">
+  <button class="btn-share" (click)="getRecipesByCategory(category.category_id)" *ngFor="let category of resCategory">
+    {{category.category_name}}
+  </button>
+</div>
+
+<div class="div2">
+  <div style="width:60%; ">
+    <div class="div1">
+
+      <article *ngFor="let recipe of resRecipes">
+        <!-- <img src="'data:image/jpg;base64,' + {{recipe.main_image}}" [routerLink]="['/recipeinfo']" [queryParams]="recipe" /> -->
+        <img [src]='recipe.main_image' />
+        <!-- <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(recipe.main_image)"/> -->
+        <a [routerLink]="['/recipeinfo']" [queryParams]="recipe">
+          <div>
+            <h3>{{recipe.recipe_name}}</h3>
+            <div class="desc">{{recipe.recipe_description}}</div>
+          </div>
+        </a>
+        <button class="btn" (click)="addRecipe(recipe.recipe_id)"><i class="fa fa-plus"></i></button>
+      </article>
+
+    </div>
+  </div>
+
+  <div style="width:40%">
+    <h3>RECOMMENDED RECIPE</h3>
+    <div class="div3">
+
+      <article *ngFor="let recipe of resRecRecipes">
+        <!-- <img src="'data:image/jpg;base64,' + {{recipe.main_image}}" [routerLink]="['/recipeinfo']" [queryParams]="recipe" /> -->
+        <img [src]='recipe.main_image' />
+        <!-- <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(recipe.main_image)"/> -->
+        <a [routerLink]="['/recipeinfo']" [queryParams]="recipe">
+          <div>
+            <h3>{{recipe.recipe_name}}</h3>
+            <div class="desc">{{recipe.recipe_description}}</div>
+          </div>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="tools  pull-right">
+                 <a class="btn btn-primary btn-sm" style="background :rgb(241, 237, 236);color:rgb(231, 111, 81)" [routerLink]="['/recipeinfo']" [queryParams]= "recipe"><i class="fa fa-eye"></i></a>
+                <a class="btn btn-primary btn-sm" style="background :rgb(241, 237, 236);color:rgb(231, 111, 81)" ><i class="fa fa-eye"></i></a>
+                <a  class="btn btn-danger btn-sm" style="background :rgb(241, 237, 236);color:rgb(231, 111, 81)"><i class="fa fa-pencil"></i></a>
+                <a  class="btn btn-danger btn-sm" style="background :rgb(241, 237, 236);color:rgb(231, 111, 81)"><i class="fa fa-trash"></i></a>
+            </div> -->
